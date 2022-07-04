@@ -1,6 +1,5 @@
 package hello.hellospring.controller;
 
-import hello.hellospring.SessionConstants;
 import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,20 +43,18 @@ public class MemberController {
     }
 
     @PostMapping("/members/login")
-    public String login(Member member, HttpServletRequest request) {
+    public String loginForm(Member member, HttpServletRequest request) {
 
         if(memberService.login(member)) {
 
             HttpSession session = request.getSession();
-            session.setAttribute(SessionConstants.LOGIN_MEMBER, member);
+            session.setAttribute("member", member);
             session.setMaxInactiveInterval(3600);
-            List<Member> members = memberService.findMember();
+
             return "redirect:/";
 
         }
-
         return "members/login";
-
     }
 
     @GetMapping("/members/list")
@@ -65,6 +62,5 @@ public class MemberController {
         List<Member> members = memberService.findMember();
         model.addAttribute("members", members);
         return "members/list";
-
     }
 }

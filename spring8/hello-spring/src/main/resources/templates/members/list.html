@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>회원목록</title>
+    <title>Title</title>
 </head>
 <body>
 
@@ -12,17 +12,14 @@
         <thead>
 
         <tr>
-
             <th>#</th>
             <th>email</th>
             <th>password</th>
-
         </tr>
 
         </thead>
 
         <tbody>
-
         <tr th:each="member:${members}">
 
             <td th:text="${member.id}"></td>
@@ -30,7 +27,6 @@
             <td th:text="${member.password}"></td>
 
         </tr>
-
         </tbody>
 
     </table>

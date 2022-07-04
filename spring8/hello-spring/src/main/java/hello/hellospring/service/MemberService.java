@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-//회원가입 중복 로그인 전체조회
 @Transactional
 public class MemberService {
 
@@ -21,24 +20,22 @@ public class MemberService {
         validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();
-
     }
 
-    private void validateDuplicateMember(Member member) {
+    private void validateDuplicateMember(Member member){
         memberRepository.findByEmail(member.getEmail())
                 .ifPresent(m -> {
-                    throw new IllegalStateException();
+                    throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });
     }
 
     public boolean login(Member member) {
 
-        if(memberRepository.findByEmail(member.getEmail()).isPresent() &&
-                (memberRepository.findByPassword(member.getPassword())).isPresent()) {
+        if( (memberRepository.findByEmail(member.getEmail()).isPresent()) &&
+                (memberRepository.findByPassword(member.getPassword())).isPresent()){
             return true;
         }
         return false;
-
     }
 
     public List<Member> findMember() {
