@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<body>
+장바구니
+<div class="container">
+
+    <div>
+        <table>
+            <thead>
+
+            <tr>
+                <th>#</th>
+                <th>상품명 </th>
+            </tr>
+
+            </thead>
+
+            <tbody>
+            <tr th:each="wishProduct : ${wishProducts}">
+
+                <td th:text="${wishProduct.id}"></td>
+                <td th:text="${wishProduct.wishproductname}"></td>
+
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
