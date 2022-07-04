@@ -1,6 +1,5 @@
 package hello.hellospring.service;
 
-import hello.hellospring.controller.MemberForm;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-//회원가입 중복 로그인 findAll findOne
+//회원가입 중복 로그인 전체조회
 @Transactional
 public class MemberService {
 
@@ -22,27 +21,28 @@ public class MemberService {
         validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();
+
     }
 
     private void validateDuplicateMember(Member member) {
-
         memberRepository.findByEmail(member.getEmail())
                 .ifPresent(m -> {
-                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                    throw new IllegalStateException();
                 });
     }
 
     public boolean login(Member member) {
-        if (memberRepository.findByEmail(member.getEmail()).isPresent() &&
+
+        if(memberRepository.findByEmail(member.getEmail()).isPresent() &&
                 (memberRepository.findByPassword(member.getPassword())).isPresent()) {
             return true;
         }
         return false;
+
     }
 
-    public List<Member> findAll() {
+    public List<Member> findMember() {
         return memberRepository.findAll();
     }
-
 
 }

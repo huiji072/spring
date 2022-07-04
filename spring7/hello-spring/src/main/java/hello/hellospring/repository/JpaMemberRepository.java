@@ -28,7 +28,7 @@ public class JpaMemberRepository implements MemberRepository{
 
     @Override
     public Optional<Member> findByEmail(String email) {
-        List<Member> result = em.createQuery("select m from Member m where m.email = :email", Member.class)
+        List<Member> result = em.createQuery("select m from Member m where m.email = :emaiml", Member.class)
                 .setParameter("email", email)
                 .getResultList();
         return result.stream().findAny();
