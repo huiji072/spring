@@ -43,7 +43,7 @@ public class MemberController {
     }
 
     @PostMapping("/members/login")
-    public String loginForm(Member member, HttpServletRequest request) {
+    public String login(Member member, HttpServletRequest request) {
 
         if(memberService.login(member)) {
 
@@ -59,7 +59,7 @@ public class MemberController {
 
     @GetMapping("/members/list")
     public String list(Model model) {
-        List<Member> members = memberService.findMember();
+        List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
         return "members/list";
     }

@@ -7,10 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+//회원가입, 중복, 로그인, 전체찾기
 @Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
+
     @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
@@ -22,24 +24,25 @@ public class MemberService {
         return member.getId();
     }
 
-    private void validateDuplicateMember(Member member){
+    private void validateDuplicateMember(Member member) {
+
         memberRepository.findByEmail(member.getEmail())
                 .ifPresent(m -> {
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });
+
     }
 
     public boolean login(Member member) {
 
-        if( (memberRepository.findByEmail(member.getEmail()).isPresent()) &&
-                (memberRepository.findByPassword(member.getPassword())).isPresent()){
+        if (memberRepository.findByEmail(member.getEmail()).isPresent() &&
+                memberRepository.findByPassword(member.getPassword()).isPresent()) {
             return true;
         }
         return false;
     }
 
-    public List<Member> findMember() {
+    public List<Member> findMembers() {
         return memberRepository.findAll();
     }
-
 }
