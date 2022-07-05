@@ -44,7 +44,20 @@
     </div>
 
 </div>
+<!--$.ajax({-->
+<!--url : "/products/list",-->
+<!--type : 'post',-->
+<!--data : {-->
+<!--name : $('input[name=chk]').val(),-->
+<!--message : ""-->
+<!--},-->
+<!--success : function(data) {-->
 
+<!--},-->
+<!--error : function() {-->
+<!--alert("error");-->
+<!--}-->
+<!--});-->
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 
@@ -54,25 +67,14 @@
         var val = [];
         $(':checkbox:checked').each(function(i){
           val[i] = $(this).val();
+          document.write(val[i]+<hr>)
           alert(val[i])
         });
       });
     });
 
 
-$.ajax({
-	url : "/products/wishlist",
-	type : 'post',
-	data : {
-		name : "이름"
-	},
-	success : function(data) {
 
-     },
-	error : function() {
-		alert("error");
-	}
-});
 
 </script>
 
