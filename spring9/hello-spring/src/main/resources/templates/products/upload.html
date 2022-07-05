@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+</head>
+<body>
+
+<div class="container">
+
+    <form action="/products/upload"  method="post">
+
+        <div class="group-form">
+
+            <label for="name" class="upload-form">상품명</label>
+            <input type="text" id="name" name="name">
+
+            <label for="qty" class="upload-form">개수</label>
+            <input type="text" id="qty" name="qty">
+
+        </div>
+        <button type="submit">upload</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
