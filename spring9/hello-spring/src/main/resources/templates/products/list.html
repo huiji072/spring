@@ -18,19 +18,63 @@
             </thead>
 
             <tbody>
-            <tr th:each="product : ${products}">
 
-                <td th:text="${product.id}"></td>
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.qty}"></td>
+            <form action="/products/wishList" method="post" id="wish-form">
 
-            </tr>
+                <tr th:each="product : ${products}">
+
+                    <td th:text="${product.id}"></td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.qty}"></td>
+
+
+                    <td><input type="checkbox" id="chk" name="chk" th:value="${product.name}"></td>
+
+                </tr>
+
+                <tr>
+                    <td> <button type="submit" name="submit" id="submit">add wish list</button> </td>
+                </tr>
+
+            </form>
+
 
             </tbody>
         </table>
     </div>
 
 </div>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+
+
+    $(function(){
+      $('#submit').click(function(){
+        var val = [];
+        $(':checkbox:checked').each(function(i){
+          val[i] = $(this).val();
+          alert(val[i])
+        });
+      });
+    });
+
+
+$.ajax({
+	url : "/products/wishlist",
+	type : 'post',
+	data : {
+		name : "이름"
+	},
+	success : function(data) {
+
+     },
+	error : function() {
+		alert("error");
+	}
+});
+
+</script>
 
 </body>
 </html>

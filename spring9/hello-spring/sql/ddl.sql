@@ -15,3 +15,6 @@ create table product
  qty bigint,
  primary key (id)
 );
+
+
+
