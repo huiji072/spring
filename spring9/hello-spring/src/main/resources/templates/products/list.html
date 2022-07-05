@@ -19,7 +19,7 @@
 
             <tbody>
 
-            <form action="/products/wishList" method="post" id="wish-form">
+            <form action="/products/wishList" method="get" id="wish-form">
 
                 <tr th:each="product : ${products}">
 
@@ -44,20 +44,7 @@
     </div>
 
 </div>
-<!--$.ajax({-->
-<!--url : "/products/list",-->
-<!--type : 'post',-->
-<!--data : {-->
-<!--name : $('input[name=chk]').val(),-->
-<!--message : ""-->
-<!--},-->
-<!--success : function(data) {-->
 
-<!--},-->
-<!--error : function() {-->
-<!--alert("error");-->
-<!--}-->
-<!--});-->
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 
@@ -67,8 +54,8 @@
         var val = [];
         $(':checkbox:checked').each(function(i){
           val[i] = $(this).val();
-          document.write(val[i]+<hr>)
-          alert(val[i])
+          document.write(val[i])
+          document.write("<br>")
         });
       });
     });

@@ -57,7 +57,7 @@ public class ProductController {
         return "products/list";
     }
 
-    @PostMapping("/products/wishList")
+    @GetMapping("/products/wishList")
     public String wishList() {
         return "products/wishList";
     }
