@@ -19,7 +19,7 @@
 
             <tbody>
 
-            <form action="/products/wishList" method="get" id="wish-form">
+            <form method="get" id="wish-form" action="/products/wishList">
 
                 <tr th:each="product : ${products}">
 
@@ -28,8 +28,8 @@
                     <td th:text="${product.qty}"></td>
 
 
-                    <td><input type="checkbox" id="chk" name="chk" th:value="${product.name}"></td>
-
+                    <td><input type="checkbox" id="chk" name="chk" th:value="${product.id}" th:filed="*{chk}"></td>
+                    <input type="hidden" name="pid"  th:value="${product.id}">
                 </tr>
 
                 <tr>
@@ -39,31 +39,15 @@
             </form>
 
 
+
+
             </tbody>
         </table>
     </div>
 
 </div>
 
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script>
 
-
-    $(function(){
-      $('#submit').click(function(){
-        var val = [];
-        $(':checkbox:checked').each(function(i){
-          val[i] = $(this).val();
-          document.write(val[i])
-          document.write("<br>")
-        });
-      });
-    });
-
-
-
-
-</script>
 
 </body>
 </html>

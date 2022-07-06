@@ -50,6 +50,7 @@ public class MemberController {
             HttpSession session = request.getSession();
             session.setAttribute("member", member);
             session.setMaxInactiveInterval(3600);
+//            name말고 id로 바꾸기 항상 고유값
 
             return "redirect:/";
 

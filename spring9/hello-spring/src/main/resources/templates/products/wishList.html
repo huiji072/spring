@@ -11,18 +11,18 @@
 
             <tr>
                 <th>#</th>
-                <th>상품명 </th>
-                <th>상품개수</th>
+<!--                <th>상품명 </th>-->
+<!--                <th>상품개수</th>-->
             </tr>
 
             </thead>
 
             <tbody>
-            <tr th:each="product : ${products}">
+            <tr th:each="pid : ${id}">
 
-                <td th:text="${product.id}"></td>
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.qty}"></td>
+                <td th:text="${pid.id}"></td>
+<!--                <td th:text="${product.name}"></td>-->
+<!--                <td th:text="${product.qty}"></td>-->
 
             </tr>
 

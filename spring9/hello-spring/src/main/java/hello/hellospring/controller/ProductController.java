@@ -5,9 +5,9 @@ import hello.hellospring.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,16 +50,25 @@ public class ProductController {
         return "products/search";
     }
 
-    @GetMapping("/products/list")
+    //    @RequestMapping(value="/products/list", method = RequestMethod.GET)
+
+
+    @GetMapping("products/list")
     public String list(Model model) {
         List<Product> products = productService.findProducts();
         model.addAttribute("products", products);
+//        System.out.println("id : "+id);
+
         return "products/list";
     }
 
+    @ResponseBody
     @GetMapping("/products/wishList")
-    public String wishList() {
-        return "products/wishList";
+    public String wishList(@RequestParam(value="chk", required = false) List<String > products) {
+        for(String product : products){
+            System.out.println(product);
+        }
+        return "id : "+products.toString();
     }
 
 }
