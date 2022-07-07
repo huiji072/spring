@@ -1,5 +1,6 @@
 package hello.hellospring.repository;
 
+import hello.hellospring.domain.Cart;
 import hello.hellospring.domain.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 

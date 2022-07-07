@@ -1,5 +1,6 @@
 package hello.hellospring.service;
 
+import hello.hellospring.domain.Cart;
 import hello.hellospring.domain.Product;
 import hello.hellospring.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,17 @@ public class ProductService {
     public List<Product> findProducts() {
         return productRepository.findAll();
     }
+
+//    //장바구니에 담기
+//    public Long addCart(Cart cart) {
+//        productRepository.addCart(cart);
+//        return cart.getMemberid();
+//    }
+//
+//    //장바구니 상품 출력
+//    public List<Cart> findCarts() {
+//        return productRepository.findByCart();
+//    }
+
     
 }

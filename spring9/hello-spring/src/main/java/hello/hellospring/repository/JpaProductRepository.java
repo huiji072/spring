@@ -1,5 +1,6 @@
 package hello.hellospring.repository;
 
+import hello.hellospring.domain.Cart;
 import hello.hellospring.domain.Product;
 
 import javax.persistence.EntityManager;
@@ -48,4 +49,19 @@ public class JpaProductRepository implements ProductRepository{
         return em.createQuery("select p from Product p", Product.class)
                 .getResultList();
     }
+
+
+    //장바구니에 담기
+//    @Override
+//    public Cart addCart(Cart cart) {
+//        em.persist(cart);
+//        return cart;
+//    }
+//
+//    //장바구니 목록 출력
+//    @Override
+//    public List<Cart> findByCart() {
+//        return em.createQuery("select c from Cart c", Cart.class)
+//                .getResultList();
+//    }
 }

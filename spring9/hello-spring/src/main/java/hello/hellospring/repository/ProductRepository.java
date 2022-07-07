@@ -1,5 +1,6 @@
 package hello.hellospring.repository;
 
+import hello.hellospring.domain.Cart;
 import hello.hellospring.domain.Product;
 
 import java.util.List;
@@ -12,5 +13,7 @@ public interface ProductRepository {
     Optional<Product> findByName(String name);
     Optional<Product> findByQty(int qty);
     List<Product> findAll();
+//    Cart addCart(Cart cart);
+//    List<Cart> findByCart();
 
 }

@@ -51,7 +51,7 @@ public class MemberController {
             session.setAttribute("member", member);
             session.setMaxInactiveInterval(3600);
 //            name말고 id로 바꾸기 항상 고유값
-
+            System.out.println(session.getId()+"sessionid");
             return "redirect:/";
 
         }

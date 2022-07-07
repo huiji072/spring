@@ -16,5 +16,18 @@ create table product
  primary key (id)
 );
 
+drop table if exists cart CASCADE;
+create table cart
+(
+memberid bigint,
+productid bigint,
+cartqty int default 1,
+primary key(memberid, productid)
+)
+--
+--select memberid, productid, cartqty
+--from member
+--join cart
+--on member.id = cart.memberid
 
 
