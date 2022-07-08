@@ -30,7 +30,7 @@ public class JpaMemberRepository implements MemberRepository{
     @Override
     public Optional<Member> findByEmail(String email) {
         Member member = em.find(Member.class, email);
-        return Optional.of(member);
+        return Optional.ofNullable(member);
     }
 
     @Override
