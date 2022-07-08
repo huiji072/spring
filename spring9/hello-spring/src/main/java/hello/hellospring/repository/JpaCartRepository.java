@@ -23,6 +23,15 @@ public class JpaCartRepository implements CartRepository {
         return cart;
     }
 
+    //memberid, productid가 이미 exists이면 qty에 +1
+//    @Override
+//    public List<Cart> findByUpdate(Cart cart) {
+//        return em.createQuery("update cart set cartqty = cartqty+1 ", Cart.class)
+//                .getResultList();
+//
+//
+//    }
+
     @Override
     public Optional<Cart> findByMemberid(Long memberid) {
         Cart cart = em.find(Cart.class, memberid);

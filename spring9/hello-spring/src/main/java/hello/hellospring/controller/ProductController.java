@@ -17,6 +17,7 @@ public class ProductController {
 
     private final ProductService productService;
     private final CartService cartService;
+    private int cnt = 1;
 
     @Autowired
     public ProductController(ProductService productService, CartService cartService) {
@@ -74,14 +75,20 @@ public class ProductController {
         for(String product : products){
             System.out.println(product);
 
-            cart.setMemberid(1L);
+            cart.setMemberid(2L);
             cart.setProductid(Long.parseLong(product));
-            cart.setCartqty(1);
+//            if(cartService.increaseQty(cart)) {
+//
+//                cart.setCartqty();
+//            }
+
         }
+
+        System.out.println("mid : " + cart.getMemberid());
+        System.out.println("pid : " + cart.getProductid());
+        System.out.println("qty : " + cart.getCartqty());
+
         cartService.addCart(cart);
-
-        //qty는 디폴트 값 1
-
         return "id : "+products.toString();
     }
 

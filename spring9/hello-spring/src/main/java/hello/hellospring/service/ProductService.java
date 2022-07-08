@@ -41,16 +41,5 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-//    //장바구니에 담기
-//    public Long addCart(Cart cart) {
-//        productRepository.addCart(cart);
-//        return cart.getMemberid();
-//    }
-//
-//    //장바구니 상품 출력
-//    public List<Cart> findCarts() {
-//        return productRepository.findByCart();
-//    }
-
     
 }
