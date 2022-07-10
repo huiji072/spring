@@ -30,12 +30,18 @@ public class MemberService {
 
     }
 
-    public boolean login(Member member) {
-        if(memberRepository.findByEmail(member.getEmail()).isPresent() &&
-        memberRepository.findByPassword(member.getPassword()).isPresent()) {
-            return true;
-        }
-        return false;
+//    public boolean login(Member member) {
+//        if(memberRepository.findByEmail(member.getEmail()).isPresent() &&
+//        memberRepository.findByPassword(member.getPassword()).isPresent()) {
+//            return true;
+//        }
+//        return false;
+//    }
+
+    public Member login(String email, String password) {
+        return memberRepository.findByEmail(email)
+                .filter(m -> m.getPassword().equals(password))
+                .orElse(null);
     }
 
     public List<Member> findMembers(){

@@ -42,11 +42,14 @@ public class MemberController {
     }
 
     @PostMapping("/members/login")
-    public String login(Member member) {
-        if(memberService.login(member)) {
-            return "redirect:/";
+    public String login(MemberForm form) {
+
+        Member member = memberService.login(form.getEmail(), form.getPassword());
+        if(member == null){
+            return "members/login";
         }
-        return "members/login";
+        return "redirect:/";
+
     }
 
     @GetMapping("/members/list")
