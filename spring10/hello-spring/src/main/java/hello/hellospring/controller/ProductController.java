@@ -42,5 +42,19 @@ public class ProductController {
         return "products/list";
     }
 
+    @GetMapping("/products/search")
+    public String searchForm() {
+        return "products/search";
+    }
+
+    @PostMapping("/products/search")
+    public String search(Model model, Product product) {
+        if(productService.search(product)) {
+            model.addAttribute("products", product);
+            return "products/search";
+        }
+        return "redirect:/";
+    }
+
 
 }
