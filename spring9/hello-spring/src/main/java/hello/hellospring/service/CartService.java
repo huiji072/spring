@@ -6,6 +6,7 @@ import hello.hellospring.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -46,6 +47,10 @@ public class CartService {
     //cartqty 조회
     public Optional<Cart> findByCartqty(int cartqty) {
         return cartRepository.findByCartqty(cartqty);
+    }
+
+    public List<Cart> findCarts() {
+        return cartRepository.findAll();
     }
 
 

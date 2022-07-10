@@ -50,5 +50,11 @@ public class JpaCartRepository implements CartRepository {
         return Optional.ofNullable(cart);
     }
 
+    @Override
+    public List<Cart> findAll() {
+        return em.createQuery("select c from Cart c", Cart.class)
+                .getResultList();
+    }
+
 
 }

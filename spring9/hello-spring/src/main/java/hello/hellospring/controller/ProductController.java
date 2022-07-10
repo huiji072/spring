@@ -68,7 +68,7 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/products/wishList")
-    public String wishList(@RequestParam(value="chk", required = false) List<String > products) {
+    public String wishList(@RequestParam(value="chk", required = false) List<String > products, Model model) {
         Cart cart = new Cart();
         Member member = new Member();
 
@@ -89,7 +89,16 @@ public class ProductController {
         System.out.println("qty : " + cart.getCartqty());
 
         cartService.addCart(cart);
-        return "id : "+products.toString();
+        return "id" + products.toString();
     }
+
+//    @GetMapping("/products/wishList")
+//    public String wishList2(Model model) {
+//        List<Cart> carts = cartService.findCarts();
+//        model.addAttribute("carts", carts);
+//
+////        cartService.addCart(carts);
+//        return "products/wishList";
+//    }
 
 }

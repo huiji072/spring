@@ -18,9 +18,11 @@
             </thead>
 
             <tbody>
-            <tr th:each="pid : ${id}">
+            <tr th:each="cart : ${carts}">
 
-                <td th:text="${pid.id}"></td>
+                <td th:text="${cart.cartqty}"></td>
+                <td th:text="${cart.proudctid}"></td>
+                <td th:text="${cart.cartqty}"></td>
 <!--                <td th:text="${product.name}"></td>-->
 <!--                <td th:text="${product.qty}"></td>-->
 

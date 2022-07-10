@@ -12,5 +12,6 @@ public interface CartRepository {
     Optional<Cart> findByMemberid(Long memberid);
     Optional<Cart> findByProductid(Long productid);
     Optional<Cart> findByCartqty(int cartqty);
+    List<Cart> findAll();
 
 }
