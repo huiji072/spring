@@ -3,7 +3,9 @@ package hello.hellospring.controller;
 import hello.hellospring.SessionConstants;
 import hello.hellospring.domain.Member;
 import hello.hellospring.domain.MemberForm;
+import hello.hellospring.domain.Seller;
 import hello.hellospring.service.MemberService;
+import hello.hellospring.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,16 +14,17 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Objects;
 
 //@RequiredArgsConstructor
 @Controller
 public class MemberController {
 
     private final MemberService memberService;
+    private final SellerService sellerService;
     @Autowired
-    public MemberController(MemberService memberService) {
+    public MemberController(MemberService memberService, SellerService sellerService) {
         this.memberService = memberService;
+        this.sellerService = sellerService;
     }
 
 
@@ -32,11 +35,33 @@ public class MemberController {
 
 
     @PostMapping("/members/join")
-    public String join(MemberForm form) {
+    public String join(MemberForm form
+            ,@RequestParam(value="chkseller", required = false) String sellerid,
+                       @RequestParam(value="chkbuyer", required = false) String buyerid) {
+
+        System.out.println("sellerid : " + sellerid);
+        System.out.println("buyerid : " + buyerid);
+
         Member member = new Member();
         member.setEmail(form.getEmail());
         member.setPassword(form.getPassword());
         memberService.join(member);
+
+        Seller seller = new Seller();
+        seller.setMemberid(member.getId());
+        System.out.println(seller.getMemberid());
+        sellerService.save(seller);
+
+
+
+//        if(Objects.equals(sellerid, "on") && !Objects.equals(buyerid, "on")) {
+//            return "sellerHome";
+//        }else if(!Objects.equals(sellerid, "on") && Objects.equals(buyerid, "on")) {
+//            return "buyerHome";
+//        }else if(Objects.equals(sellerid, "on") && Objects.equals(buyerid, "on")) {
+//            return "adminHome";
+//        }
+
         return "members/login";
     }
 
@@ -47,13 +72,8 @@ public class MemberController {
 
 //    @ResponseBody
     @PostMapping("/members/login")
-    public String login(@ModelAttribute  MemberForm form, HttpServletRequest request
-    ,@RequestParam(value="chkseller", required = false) String sellerid,
-                        @RequestParam(value="chkbuyer", required = false) String buyerid) {
+    public String login(@ModelAttribute  MemberForm form, HttpServletRequest request) {
 
-        System.out.println("sellerid : " + sellerid);
-        System.out.println("buyerid : " + buyerid);
-;
         Member loginMember = memberService.login(form.getEmail(), form.getPassword());
         //email, password가 맞지 않을 때
         if(loginMember == null) {
@@ -68,26 +88,10 @@ public class MemberController {
         session.setMaxInactiveInterval(3600); //1시간
         System.out.println("session id" + session.getId());
 
-
-        if(Objects.equals(sellerid, "on") && !Objects.equals(buyerid, "on")) {
-            return "sellerHome";
-        }else if(!Objects.equals(sellerid, "on") && Objects.equals(buyerid, "on")) {
-            return "buyerHome";
-        }else if(Objects.equals(sellerid, "on") && Objects.equals(buyerid, "on")) {
-            return "adminHome";
-        }
-
         return "redirect:/";
 
     }
 
-//    @ResponseBody
-//    @PostMapping("/members/login")
-//    public String sellerLogin(@RequestParam(value="chkseller", required = false) String sellerid) {
-//        System.out.println("sellerid " + sellerid);
-//        return "members/list";
-//
-//    }
 
     //로그아웃
     @GetMapping("/members/logout")

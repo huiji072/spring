@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class ProductController {
@@ -34,7 +36,16 @@ public class ProductController {
     }
 
     @PostMapping("/products/upload")
-    public String upload(ProductForm form) {
+    public String upload(ProductForm form, @RequestParam(value="chkseller", required = false) String sellerid
+    ,Model model) {
+
+//        if sellerid가 on이 아닐 경우 alert 후 redirect:/
+//        if (!Objects.equals(sellerid, "on")){
+//            System.out.println("sid on : " +sellerid);
+//            System.out.println("<script>alert('upload 권한이 없습니다.'); </script>");
+//            return "redirect:/";
+//        }
+
         Product product = new Product();
         product.setName(form.getName());
         product.setQty(form.getQty());

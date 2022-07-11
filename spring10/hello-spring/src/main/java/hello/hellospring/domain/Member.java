@@ -2,16 +2,16 @@ package hello.hellospring.domain;
 
 import org.hibernate.annotations.*;
 
+import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Table;
 
 @FilterDef(name = "deletedProductFilter", parameters = @ParamDef(name = "isDeleted", type = "boolean"))
 @Filter(name = "deletedProductFilter", condition = "deleted = :isDeleted")
 @SQLDelete(sql = "UPDATE member SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
 @Entity
+@Table(name="member")
 public class Member {
 
     @Id
@@ -19,6 +19,17 @@ public class Member {
     private Long id;
     private String email;
     private String password;
+
+    @OneToOne(mappedBy="member")
+    private Seller seller;
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
 
     //soft-delete 기본값은 false
     private boolean deleted = Boolean.FALSE;
