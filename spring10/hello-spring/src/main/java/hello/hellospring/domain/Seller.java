@@ -14,14 +14,6 @@ public class Seller {
     @Column(name="memberid")
     private Long memberid;
 
-    public Long getMemberid() {
-        return memberid;
-    }
-
-    public void setMemberid(Long memberid) {
-        this.memberid = memberid;
-    }
-
     public Long getId() {
         return id;
     }
@@ -30,9 +22,17 @@ public class Seller {
         this.id = id;
     }
 
+    public Long getMemberid() {
+        return memberid;
+    }
+
+    public void setMemberid(Long memberid) {
+        this.memberid = memberid;
+    }
+
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "memberid", insertable = false, updatable = false)
     private Member member;
-
 
 }

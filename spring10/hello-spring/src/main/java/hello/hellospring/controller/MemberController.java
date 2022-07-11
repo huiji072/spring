@@ -1,9 +1,11 @@
 package hello.hellospring.controller;
 
 import hello.hellospring.SessionConstants;
+import hello.hellospring.domain.Buyer;
 import hello.hellospring.domain.Member;
 import hello.hellospring.domain.MemberForm;
 import hello.hellospring.domain.Seller;
+import hello.hellospring.service.BuyerService;
 import hello.hellospring.service.MemberService;
 import hello.hellospring.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Objects;
 
 //@RequiredArgsConstructor
 @Controller
@@ -21,10 +24,12 @@ public class MemberController {
 
     private final MemberService memberService;
     private final SellerService sellerService;
+    private final BuyerService buyerService;
     @Autowired
-    public MemberController(MemberService memberService, SellerService sellerService) {
+    public MemberController(MemberService memberService, SellerService sellerService, BuyerService buyerService) {
         this.memberService = memberService;
         this.sellerService = sellerService;
+        this.buyerService = buyerService;
     }
 
 
@@ -47,21 +52,27 @@ public class MemberController {
         member.setPassword(form.getPassword());
         memberService.join(member);
 
-        Seller seller = new Seller();
-        seller.setMemberid(member.getId());
-        System.out.println(seller.getMemberid());
-        sellerService.save(seller);
 
-
-
-//        if(Objects.equals(sellerid, "on") && !Objects.equals(buyerid, "on")) {
-//            return "sellerHome";
-//        }else if(!Objects.equals(sellerid, "on") && Objects.equals(buyerid, "on")) {
-//            return "buyerHome";
-//        }else if(Objects.equals(sellerid, "on") && Objects.equals(buyerid, "on")) {
-//            return "adminHome";
-//        }
-
+//seller, buyer 체크박스 선택 시
+        if(Objects.equals(sellerid, "on") && !Objects.equals(buyerid, "on")) {
+            Seller seller = new Seller();
+            seller.setMemberid(member.getId());
+            sellerService.save(seller);
+            return "sellerHome";
+        }else if(!Objects.equals(sellerid, "on") && Objects.equals(buyerid, "on")) {
+            Buyer buyer = new Buyer();
+            buyer.setMemberid(member.getId());
+            buyerService.save(buyer);
+            return "buyerHome";
+        }else if(Objects.equals(sellerid, "on") && Objects.equals(buyerid, "on")) {
+            Seller seller = new Seller();
+            seller.setMemberid(member.getId());
+            sellerService.save(seller);
+            Buyer buyer = new Buyer();
+            buyer.setMemberid(member.getId());
+            buyerService.save(buyer);
+            return "adminHome";
+        }
         return "members/login";
     }
 
@@ -70,7 +81,7 @@ public class MemberController {
         return "members/login";
     }
 
-//    @ResponseBody
+    //    @ResponseBody
     @PostMapping("/members/login")
     public String login(@ModelAttribute  MemberForm form, HttpServletRequest request) {
 

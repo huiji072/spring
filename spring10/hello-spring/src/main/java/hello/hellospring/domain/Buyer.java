@@ -1,19 +1,37 @@
 package hello.hellospring.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="buyer")
 public class Buyer {
 
     @Id
-    private Long buyerid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private Long id;
 
-    public Long getBuyerid() {
-        return buyerid;
+    @Column(name="memberid")
+    private Long memberid;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setBuyerid(Long buyerid) {
-        this.buyerid = buyerid;
+    public void setId(Long id) {
+        this.id = id;
     }
+
+    public Long getMemberid() {
+        return memberid;
+    }
+
+    public void setMemberid(Long memberid) {
+        this.memberid = memberid;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "memberid", insertable = false, updatable = false)
+    private Member member;
+
 }

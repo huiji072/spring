@@ -1,13 +1,7 @@
 package hello.hellospring;
 
-import hello.hellospring.repository.CartRepository;
-import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.ProductRepository;
-import hello.hellospring.repository.SellerRepository;
-import hello.hellospring.service.CartService;
-import hello.hellospring.service.MemberService;
-import hello.hellospring.service.ProductService;
-import hello.hellospring.service.SellerService;
+import hello.hellospring.repository.*;
+import hello.hellospring.service.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,12 +12,14 @@ public class SpringConfig {
     private final ProductRepository productRepository;
     private final CartRepository cartRepository;
     private final SellerRepository sellerRepository;
+    private final BuyerRepository buyerRepository;
 
-    public SpringConfig(MemberRepository memberRepository, ProductRepository productRepository, CartRepository cartRepository, SellerRepository sellerRepository) {
+    public SpringConfig(MemberRepository memberRepository, ProductRepository productRepository, CartRepository cartRepository, SellerRepository sellerRepository, BuyerRepository buyerRepository) {
         this.memberRepository = memberRepository;
         this.productRepository = productRepository;
         this.cartRepository = cartRepository;
         this.sellerRepository = sellerRepository;
+        this.buyerRepository = buyerRepository;
     }
 
     @Bean
@@ -41,5 +37,9 @@ public class SpringConfig {
     @Bean
     public SellerService sellerService() {
         return new SellerService(sellerRepository);
+    }
+    @Bean
+    public BuyerService buyerService() {
+        return new BuyerService(buyerRepository);
     }
 }
