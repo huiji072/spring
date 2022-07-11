@@ -49,5 +49,18 @@ public class MemberService {
     }
 
 
+//    soft delete
+
+    public Member create(Member member) {
+        return memberRepository.save(member);
+    }
+
+    public void remove(Long id){
+        memberRepository.deleteById(id);
+    }
+
+    public Iterable<Member> findAll(){
+        return memberRepository.findAll();
+    }
 
 }

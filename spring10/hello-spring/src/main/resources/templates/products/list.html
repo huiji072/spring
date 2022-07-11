@@ -1,36 +1,53 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>LIST</title>
-</head>
+<meta charset="UTF-8">
 <body>
 
 <div class="container">
 
-    <table>
+    <div>
+        <table>
+            <thead>
 
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>qty</th>
-        </tr>
-        </thead>
+            <tr>
+                <th>id</th>
+                <th>product </th>
+                <th>qty</th>
+            </tr>
 
-        <tbody>
-        <tr th:each="product : ${products}">
+            </thead>
 
-            <td th:text="${product.id}"></td>
-            <td th:text="${product.name}"></td>
-            <td th:text="${product.qty}"></td>
+            <tbody>
 
-        </tr>
-        </tbody>
+            <form method="post" id="wish-form" action="/products/cart">
 
-    </table>
+                <tr th:each="product : ${products}">
+
+                    <td th:text="${product.id}"></td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.qty}"></td>
+
+
+                    <td><input type="checkbox" id="chk" name="chk" th:value="${product.id}" th:filed="*{chk}"></td>
+                    <input type="hidden" name="pid"  th:value="${product.id}">
+                </tr>
+
+                <tr>
+                    <td> <button type="submit" name="submit" id="submit">add wish list</button> </td>
+                </tr>
+
+            </form>
+
+
+
+
+            </tbody>
+        </table>
+    </div>
 
 </div>
+
+
 
 </body>
 </html>

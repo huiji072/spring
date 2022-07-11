@@ -1,13 +1,18 @@
 package hello.hellospring.controller;
 
+import hello.hellospring.domain.Cart;
+import hello.hellospring.domain.Member;
 import hello.hellospring.domain.Product;
 import hello.hellospring.domain.ProductForm;
+import hello.hellospring.service.CartService;
 import hello.hellospring.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -15,9 +20,11 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
+    private final CartService cartService;
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, CartService cartService) {
         this.productService = productService;
+        this.cartService = cartService;
     }
 
 
@@ -55,6 +62,19 @@ public class ProductController {
         }
         return "redirect:/";
     }
+
+    @GetMapping("/products/cart")
+    public String cartForm() {
+//        List<Cart> carts = cartService.findCarts();
+//        model.addAttribute("carts", carts);
+        return "products/cart";
+    }
+
+    @PostMapping("/products/cart")
+    public String cart() {
+        return "products/cart";
+    }
+
 
 
 }

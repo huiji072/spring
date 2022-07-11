@@ -1,27 +1,14 @@
 package hello.hellospring.controller;
 
 import hello.hellospring.SessionConstants;
-import hello.hellospring.SessionManager;
 import hello.hellospring.domain.Member;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import javax.servlet.http.HttpServletRequest;
-@Slf4j
 @Controller
 public class HomeController {
-
-    private final SessionManager sessionManager;
-    @Autowired
-    public HomeController(SessionManager sessionManager) {
-        this.sessionManager = sessionManager;
-    }
-
 
     @GetMapping("/")
     public String home(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
