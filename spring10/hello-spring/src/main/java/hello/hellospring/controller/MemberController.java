@@ -52,7 +52,6 @@ public class MemberController {
         member.setPassword(form.getPassword());
         memberService.join(member);
 
-
 //seller, buyer 체크박스 선택 시
         if(Objects.equals(sellerid, "on") && !Objects.equals(buyerid, "on")) {
             Seller seller = new Seller();
@@ -83,7 +82,7 @@ public class MemberController {
 
     //    @ResponseBody
     @PostMapping("/members/login")
-    public String login(@ModelAttribute  MemberForm form, HttpServletRequest request) {
+    public String login(@ModelAttribute  MemberForm form, HttpServletRequest request, Member member, Seller seller) {
 
         Member loginMember = memberService.login(form.getEmail(), form.getPassword());
         //email, password가 맞지 않을 때
@@ -98,6 +97,8 @@ public class MemberController {
         session.setAttribute(SessionConstants.LOGIN_MEMBER, loginMember);
         session.setMaxInactiveInterval(3600); //1시간
         System.out.println("session id" + session.getId());
+        
+        //seller table의 memberid가 존재하면 sellerHome으로 이동
 
         return "redirect:/";
 

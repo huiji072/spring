@@ -3,6 +3,7 @@ package hello.hellospring.repository;
 import hello.hellospring.domain.Product;
 
 import javax.persistence.EntityManager;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,18 @@ public class JpaProductRepository implements ProductRepository{
     @Override
     public Optional<Product> findByQty(int qty) {
         Product product = em.find(Product.class, qty);
+        return Optional.ofNullable(product);
+    }
+
+    @Override
+    public Optional<Product> findByCreatedate(Instant createdate) {
+        Product product = em.find(Product.class, createdate);
+        return Optional.ofNullable(product);
+    }
+
+    @Override
+    public Optional<Product> findByupdatedate(Instant updatedate) {
+        Product product = em.find(Product.class, updatedate);
         return Optional.ofNullable(product);
     }
 

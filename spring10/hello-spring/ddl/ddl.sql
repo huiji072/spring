@@ -1,0 +1,5 @@
+--alter table product
+--add updatedate
+--timestamp not null
+--default CURRENT_TIMESTAMP
+--on update CURRENT_TIMESTAMP

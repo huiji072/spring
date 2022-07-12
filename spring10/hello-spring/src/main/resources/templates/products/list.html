@@ -13,6 +13,9 @@
                 <th>id</th>
                 <th>product </th>
                 <th>qty</th>
+                <th>create-date</th>
+                <td></td><td></td>
+                <th>update-date</th>
             </tr>
 
             </thead>
@@ -26,7 +29,10 @@
                     <td th:text="${product.id}"></td>
                     <td th:text="${product.name}"></td>
                     <td th:text="${product.qty}"></td>
-
+                    <td th:text="${product.createdate}"></td>
+                    <td></td><td></td>
+                    <td th:text="${product.updatedate}"></td>
+                    <td></td>
 
                     <td><input type="checkbox" id="chk" name="chk" th:value="${product.id}" th:filed="*{chk}"></td>
                     <input type="hidden" name="pid"  th:value="${product.id}">

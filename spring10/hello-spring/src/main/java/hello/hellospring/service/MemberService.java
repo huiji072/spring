@@ -5,6 +5,7 @@ import hello.hellospring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Optional;
 
 public class MemberService {
 
@@ -30,14 +31,6 @@ public class MemberService {
 
     }
 
-//    public boolean login(Member member) {
-//        if(memberRepository.findByEmail(member.getEmail()).isPresent() &&
-//        memberRepository.findByPassword(member.getPassword()).isPresent()) {
-//            return true;
-//        }
-//        return false;
-//    }
-
     public Member login(String email, String password) {
         return memberRepository.findByEmail(email)
                 .filter(m -> m.getPassword().equals(password))
@@ -47,7 +40,6 @@ public class MemberService {
     public List<Member> findMembers(){
         return memberRepository.findAll();
     }
-
 
 //    soft delete
 

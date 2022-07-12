@@ -1,9 +1,9 @@
 package hello.hellospring.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Product {
@@ -13,6 +13,26 @@ public class Product {
     private Long id;
     private String name;
     private int qty;
+    @Column(name = "createdate")
+    Instant createdate = Instant.now();
+    @Column(name = "updatedate")
+    Instant updatedate = Instant.now();
+
+    public Instant getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Instant createdate) {
+        this.createdate = createdate;
+    }
+
+    public Instant getUpdatedate() {
+        return updatedate;
+    }
+
+    public void setUpdatedate(Instant updatedate) {
+        this.updatedate = updatedate;
+    }
 
     public Long getId() {
         return id;
