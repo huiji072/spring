@@ -2,15 +2,18 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.domain.Seller;
+import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.SellerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Optional;
 
 public class SellerService {
 
     private final SellerRepository sellerRepository;
 
-
+    @Autowired
     public SellerService(SellerRepository sellerRepository) {
         this.sellerRepository = sellerRepository;
     }
@@ -20,15 +23,13 @@ public class SellerService {
         return seller.getId();
     }
 
+    public List<Seller> findAll(){
+        return sellerRepository.findAll();
+    }
+
     public Optional<Seller> findByMemberid(Long memberid) {
         return sellerRepository.findByMemberid(memberid);
     }
 
-    public boolean existsMemberid(Seller seller) {
-        if(sellerRepository.findById(seller.getMemberid()).isPresent()) {
-            return true;
-        }
-        return false;
-    }
 
 }

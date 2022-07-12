@@ -28,10 +28,23 @@ public class JpaSellerRepository implements SellerRepository{
         return Optional.ofNullable(seller);
     }
 
+    //member.id와 seller.memberid의 겹치는 값 찾기
     @Override
     public Optional<Seller> findByMemberid(Long memberid) {
         Seller seller = em.find(Seller.class, memberid);
         return Optional.ofNullable(seller);
+//        return em.createQuery("select s from Seller s where s.memberid = :memberid", Seller.class)
+//                .setParameter("memberid", memberid)
+//                .getResultList();
+////
+//        List<Long> result2 =  em.createQuery("select s.memberid from Seller s where s.memberid = :memberid", Long.class)
+//                .setParameter("memberid", memberid)
+//                .getResultList();
+//
+//        System.out.println(result2.size());;
+//        System.out.println(result.size());;
+//
+//        return result.stream().findAny();
     }
 
 

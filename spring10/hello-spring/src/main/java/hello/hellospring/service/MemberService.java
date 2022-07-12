@@ -1,6 +1,7 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.domain.Seller;
 import hello.hellospring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,6 +36,10 @@ public class MemberService {
         return memberRepository.findByEmail(email)
                 .filter(m -> m.getPassword().equals(password))
                 .orElse(null);
+    }
+
+    public Optional<Member> findById(Long id){
+        return memberRepository.findById(id);
     }
 
     public List<Member> findMembers(){

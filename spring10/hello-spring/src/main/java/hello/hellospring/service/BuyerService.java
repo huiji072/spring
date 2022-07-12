@@ -1,6 +1,7 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Buyer;
+import hello.hellospring.domain.Seller;
 import hello.hellospring.repository.BuyerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 

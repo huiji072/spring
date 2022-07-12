@@ -44,9 +44,6 @@ public class MemberController {
             ,@RequestParam(value="chkseller", required = false) String sellerid,
                        @RequestParam(value="chkbuyer", required = false) String buyerid) {
 
-        System.out.println("sellerid : " + sellerid);
-        System.out.println("buyerid : " + buyerid);
-
         Member member = new Member();
         member.setEmail(form.getEmail());
         member.setPassword(form.getPassword());
@@ -57,6 +54,7 @@ public class MemberController {
             Seller seller = new Seller();
             seller.setMemberid(member.getId());
             sellerService.save(seller);
+
             return "sellerHome";
         }else if(!Objects.equals(sellerid, "on") && Objects.equals(buyerid, "on")) {
             Buyer buyer = new Buyer();
@@ -82,7 +80,7 @@ public class MemberController {
 
     //    @ResponseBody
     @PostMapping("/members/login")
-    public String login(@ModelAttribute  MemberForm form, HttpServletRequest request, Member member, Seller seller) {
+    public String login(@ModelAttribute  MemberForm form, HttpServletRequest request, Member member, Seller seller, Buyer buyer) {
 
         Member loginMember = memberService.login(form.getEmail(), form.getPassword());
         //email, password가 맞지 않을 때
@@ -98,7 +96,8 @@ public class MemberController {
         session.setMaxInactiveInterval(3600); //1시간
         System.out.println("session id" + session.getId());
         
-        //seller table의 memberid가 존재하면 sellerHome으로 이동
+        //seller table의 memberid가 존재하면 sellerHome으로
+
 
         return "redirect:/";
 

@@ -10,6 +10,7 @@ public interface SellerRepository {
     Seller save(Seller seller);
     Optional<Seller> findById(Long id);
     Optional<Seller> findByMemberid(Long memberid);
+//    List<Seller> findByMemberid();
     List<Seller> findAll();
 
 }

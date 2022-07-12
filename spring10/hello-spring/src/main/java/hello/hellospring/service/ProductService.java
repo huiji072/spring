@@ -4,6 +4,7 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.domain.Product;
 import hello.hellospring.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -30,6 +31,11 @@ public class ProductService {
                 });
 
     }
+
+//    public List<Product> sortByName() {
+//        List<Product> sortName = productRepository.findAll(Sort.by("name"));
+//        return sortName;
+//    }
     
     public List<Product> findProducts() {
         return productRepository.findAll();

@@ -29,6 +29,8 @@ public class JpaMemberRepository implements MemberRepository{
     @Override
     public Optional<Member> findById(Long id) {
         Member member = em.find(Member.class, id);
+//        member = em.createQuery("select m.id from Member m inner join Seller s on m.id = s.memberid where m.id= :id", Member.class)
+//                .setParameter("id", id);
         return Optional.ofNullable(member);
     }
 
