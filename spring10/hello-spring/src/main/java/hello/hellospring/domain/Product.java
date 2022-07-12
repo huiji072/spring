@@ -11,12 +11,22 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long userid;
     private String name;
     private int qty;
     @Column(name = "createdate")
     Instant createdate = Instant.now();
     @Column(name = "updatedate")
     Instant updatedate = Instant.now();
+
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
 
     public Instant getCreatedate() {
         return createdate;

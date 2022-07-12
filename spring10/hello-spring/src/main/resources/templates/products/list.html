@@ -10,7 +10,8 @@
             <thead>
 
             <tr>
-                <th>id</th>
+                <th>user id</th>
+                <th>product id</th>
                 <th>product </th>
                 <th>qty</th>
                 <th>create-date</th>
@@ -28,7 +29,7 @@
             <form method="post" id="wish-form" action="/products/cart">
 
                 <tr th:each="product : ${products}">
-
+                    <td th:text="${product.userid}"></td>
                     <td th:text="${product.id}"></td>
                     <td th:text="${product.name}"></td>
                     <td th:text="${product.qty}"></td>

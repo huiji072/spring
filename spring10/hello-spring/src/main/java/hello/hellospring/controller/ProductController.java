@@ -1,10 +1,11 @@
 package hello.hellospring.controller;
 
-import hello.hellospring.domain.Cart;
+import hello.hellospring.SessionConstants;
 import hello.hellospring.domain.Member;
 import hello.hellospring.domain.Product;
 import hello.hellospring.domain.ProductForm;
 import hello.hellospring.service.CartService;
+import hello.hellospring.service.MemberService;
 import hello.hellospring.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,11 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class ProductController {
@@ -37,7 +36,7 @@ public class ProductController {
 
     @PostMapping("/products/upload")
     public String upload(ProductForm form, @RequestParam(value="chkseller", required = false) String sellerid
-    ,Model model) {
+    ,Model model, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember) {
 
 //        if sellerid가 on이 아닐 경우 alert 후 redirect:/
 //        if (!Objects.equals(sellerid, "on")){
@@ -46,7 +45,11 @@ public class ProductController {
 //            return "redirect:/";
 //        }
 
+//        Member member = new Member();
+//        System.out.println("!!!!"+memberService.findById(member.getId()));
+
         Product product = new Product();
+        product.setUserid(loginMember.getId());
         product.setName(form.getName());
         product.setQty(form.getQty());
         productService.upload(product);

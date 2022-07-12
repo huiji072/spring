@@ -34,9 +34,6 @@ public class HomeController {
         if(loginMember == null) {
             return "home";
         }
-        System.out.println("~~~"+sellerService.findByMemberid(loginMember.getId()).toString());
-        System.out.println("!!!"+buyerService.findByMemberid(loginMember.getId()).toString());
-
 
         if(!(sellerService.findByMemberid(loginMember.getId()).isEmpty())){
 //            seller만 일 때
@@ -53,10 +50,6 @@ public class HomeController {
             return "adminHome";
         }
 
-
-
-
-        //세션이 유지되면 로긍니 홈으로
 
         return "loginHome";
     }
