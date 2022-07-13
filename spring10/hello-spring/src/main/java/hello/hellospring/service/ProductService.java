@@ -41,9 +41,11 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+
     public boolean search(Product product) {
 
-        if(productRepository.findByName(product.getName()).isPresent()){
+        if(productRepository.findByQty(product.getQty()).isPresent() &&
+        productRepository.findByName(product.getName()).isPresent()){
             return true;
         }
         return false;

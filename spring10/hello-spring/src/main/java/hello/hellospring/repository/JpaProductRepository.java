@@ -22,6 +22,12 @@ public class JpaProductRepository implements ProductRepository{
     }
 
     @Override
+    public Optional<Product> findByUserid(Long userid) {
+        Product product = em.find(Product.class, userid);
+        return Optional.ofNullable(product);
+    }
+
+    @Override
     public Optional<Product> findById(Long id) {
         Product product = em.find(Product.class, id);
         return Optional.ofNullable(product);
@@ -32,6 +38,7 @@ public class JpaProductRepository implements ProductRepository{
         Product product = em.find(Product.class, name);
         return Optional.ofNullable(product);
     }
+
 
     @Override
     public Optional<Product> findByQty(int qty) {
@@ -51,9 +58,20 @@ public class JpaProductRepository implements ProductRepository{
         return Optional.ofNullable(product);
     }
 
+
+
     @Override
     public List<Product> findAll() {
         return em.createQuery("select p from Product p", Product.class)
                 .getResultList();
     }
+
+//    @Override
+//    public List<Product> findAll(Product product){
+//        return em.createQuery("select p from Product p order by name = :name", Product.class)
+//                .setParameter("name", product.getName())
+//                .getResultList();
+//    }
+
+    
 }

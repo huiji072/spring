@@ -69,9 +69,9 @@ public class ProductController {
     }
 
     @PostMapping("/products/search")
-    public String search(Model model, Product product) {
-        if(productService.search(product)) {
-            model.addAttribute("products", product);
+    public String search(Model model, Product products) {
+        if(productService.search(products)) {
+            model.addAttribute("products", products);
             return "products/search";
         }
         return "redirect:/";

@@ -1,5 +1,7 @@
 package hello.hellospring.domain;
 
+import org.springframework.core.annotation.Order;
+
 import javax.persistence.*;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -18,7 +20,6 @@ public class Product {
     Instant createdate = Instant.now();
     @Column(name = "updatedate")
     Instant updatedate = Instant.now();
-
 
     public Long getUserid() {
         return userid;
