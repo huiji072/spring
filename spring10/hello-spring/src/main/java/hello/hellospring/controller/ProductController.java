@@ -1,21 +1,21 @@
 package hello.hellospring.controller;
 
 import hello.hellospring.SessionConstants;
+import hello.hellospring.domain.Cart;
 import hello.hellospring.domain.Member;
 import hello.hellospring.domain.Product;
 import hello.hellospring.domain.ProductForm;
+import hello.hellospring.repository.ProductOrderRepository;
 import hello.hellospring.service.CartService;
-import hello.hellospring.service.MemberService;
 import hello.hellospring.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class ProductController {
@@ -38,16 +38,6 @@ public class ProductController {
     public String upload(ProductForm form, @RequestParam(value="chkseller", required = false) String sellerid
     ,Model model, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember) {
 
-//        if sellerid가 on이 아닐 경우 alert 후 redirect:/
-//        if (!Objects.equals(sellerid, "on")){
-//            System.out.println("sid on : " +sellerid);
-//            System.out.println("<script>alert('upload 권한이 없습니다.'); </script>");
-//            return "redirect:/";
-//        }
-
-//        Member member = new Member();
-//        System.out.println("!!!!"+memberService.findById(member.getId()));
-
         Product product = new Product();
         product.setUserid(loginMember.getId());
         product.setName(form.getName());
@@ -62,6 +52,12 @@ public class ProductController {
         model.addAttribute("products", products);
         return "products/list";
     }
+
+//    @PostMapping("/products/list")
+//    public String listToCart(Product product) {
+//
+//        return "products/cart";
+//    }
 
     @GetMapping("/products/search")
     public String searchForm() {
@@ -78,17 +74,28 @@ public class ProductController {
     }
 
     @GetMapping("/products/cart")
-    public String cartForm() {
-//        List<Cart> carts = cartService.findCarts();
-//        model.addAttribute("carts", carts);
+    public String cartForm(Model model) {
+        List<Cart> carts = cartService.findCarts();
+        model.addAttribute("carts", carts);
         return "products/cart";
     }
 
     @PostMapping("/products/cart")
-    public String cart() {
+    public String cart(@RequestParam(value="chk", required = false) List<String > pname, Model model,
+                       @RequestParam(value="qty", required = false) List<String > pqty){
+
+        for(String name : pname) {
+            Cart cart = new Cart();
+            cart.setName(name.toString());
+            cart.setQty(1);
+            cartService.join(cart); //cart에 insert
+        }
+
+        List<Cart> carts = cartService.findCarts();
+        model.addAttribute("carts", carts);
+
         return "products/cart";
     }
-
 
 
 }

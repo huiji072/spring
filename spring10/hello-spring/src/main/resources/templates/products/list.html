@@ -24,7 +24,7 @@ tr:nth-child(even) {
 <div class="container">
 
     <div>
-        <p><button onclick="sortTable()">Sort</button></p>
+        <p><button onclick="sortTable()">name-sort</button></p>
         <table id="productList">
             <thead>
 
@@ -34,7 +34,6 @@ tr:nth-child(even) {
                 <th>product</th>
                 <th>qty</th>
                 <th>create-date</th>
-                <td></td><td></td>
                 <th>update-date</th>
             </tr>
 
@@ -46,17 +45,23 @@ tr:nth-child(even) {
             <form method="post" id="wish-form" action="/products/cart">
 
                 <tr th:each="product : ${products}">
-                    <td th:text="${product.userid}"></td>
                     <td th:text="${product.id}"></td>
+                    <td th:text="${product.userid}"></td>
                     <td th:text="${product.name}"></td>
                     <td th:text="${product.qty}"></td>
                     <td th:text="${product.createdate}"></td>
-                    <td></td><td></td>
                     <td th:text="${product.updatedate}"></td>
                     <td></td>
-
-                    <td><input type="checkbox" id="chk" name="chk" th:value="${product.id}" th:filed="*{chk}"></td>
+                    <td><input type="checkbox" id="chk" name="chk" th:value="${product.name}"></td>
+<!--                    <td><input type="hidden" id="qty" name="qty" th:value="${product.qty}"></td>-->
+                    <td><input type="hidden" id="id" name="id" th:value="${product.id}"></td>
+<!--                    <td><input type="hidden" id="userid" name="userid" th:value="${product.userid}"></td>-->
+<!--                    <td><input type="hidden" id="name" name="name" th:value="${product.name}"></td>-->
+<!--                    <td><input type="hidden" id="qty" name="qty" th:value="${product.qty}"></td>-->
                 </tr>
+                <p>
+                    <button type="submit" id="btnCart">cart</button>
+                </p>
             </form>
             </tbody>
         </table>

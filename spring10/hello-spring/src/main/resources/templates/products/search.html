@@ -3,6 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>SEARCH</title>
+    <head>
+        <style>
+table {
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+</style>
+    </head>
 </head>
 <body>
 
@@ -12,8 +30,8 @@
 
         <label for="name" class="find-name">name</label>
         <input type="text" id="name" name="name">
-        <label for="qty" class="find-name">name</label>
-        <input type="text" id="qty" name="qty">
+<!--        <label for="qty" class="find-name">name</label>-->
+<!--        <input type="text" id="qty" name="qty">-->
 
         <button type="submit">find</button>
 
@@ -22,13 +40,12 @@
 
             <thead>
             <tr>
-                <th>user id | </th>
-                <th>product id | </th>
-                <th>product | </th>
-                <th>qty | </th>
+                <th>user id</th>
+                <th>product id</th>
+                <th>product</th>
+                <th>qty</th>
                 <th>create-date</th>
-                <td></td>|<td></td>
-                <th>update-date | </th>
+                <th>update-date</th>
             </tr>
             </thead>
 
@@ -39,7 +56,6 @@
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.qty}"></td>
                 <td th:text="${product.createdate}"></td>
-                <td></td><td></td>
                 <td th:text="${product.updatedate}"></td>
                 <td></td>
 

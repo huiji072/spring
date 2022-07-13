@@ -54,7 +54,6 @@ public class MemberController {
             Seller seller = new Seller();
             seller.setMemberid(member.getId());
             sellerService.save(seller);
-
             return "sellerHome";
         }else if(!Objects.equals(sellerid, "on") && Objects.equals(buyerid, "on")) {
             Buyer buyer = new Buyer();

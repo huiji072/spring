@@ -1,38 +1,57 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
+<head>
+    <style>
+table {
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+</style>
+</head>
 <body>
 
 <div class="container">
-    <h4 class="mb-3" th:text="|로그인 사용자 이름: ${member.email}|">cart | </h4>
+
     <div>
-        <table>
+        <table id="productList">
             <thead>
 
             <tr>
-                <th>#</th>
-                <!--                <th>상품명 </th>-->
-                <!--                <th>상품개수</th>-->
+                <th>id</th>
+                <th>product</th>
+                <th>qty</th>
             </tr>
 
             </thead>
 
+
             <tbody>
-            <tr th:each="cart : ${carts}">
+            <form action="/products/cart" method="post">
 
-                <td th:text="${cart.memberid}"></td>
-                <td th:text="${cart.proudctid}"></td>
-                <td th:text="${cart.cartqty}"></td>
-                <!--                <td th:text="${product.name}"></td>-->
-                <!--                <td th:text="${product.qty}"></td>-->
+                <tr th:each="cart : ${carts}">
+                    <td th:text="${cart.id}"></td>
+                    <td th:text="${cart.name}"></td>
+                    <td th:text="${cart.qty}"></td>
+                </tr>
 
-            </tr>
-
+            </form>
             </tbody>
         </table>
     </div>
 
 </div>
+
 
 </body>
 </html>

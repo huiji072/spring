@@ -1,38 +1,39 @@
 package hello.hellospring.domain;
 
 import javax.persistence.*;
+import java.time.Instant;
 
 @Entity
-@IdClass(CartId.class) //@Id 여러개 지정하기 위해서
 public class Cart {
 
+
     @Id
-    private Long memberid;
-    @Id
-    private Long productid;
-    private int cartqty;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private int qty;
 
-    public Long getMemberid() {
-        return memberid;
+    public Long getId() {
+        return id;
     }
 
-    public void setMemberid(Long memberid) {
-        this.memberid = memberid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getProductid() {
-        return productid;
+    public String getName() {
+        return name;
     }
 
-    public void setProductid(Long productid) {
-        this.productid = productid;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getCartqty() {
-        return cartqty;
+    public int getQty() {
+        return qty;
     }
 
-    public void setCartqty(int cartqty) {
-        this.cartqty = cartqty;
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 }

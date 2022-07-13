@@ -8,9 +8,7 @@ import java.util.Optional;
 public interface CartRepository {
 
     Cart save(Cart cart);
-    Optional<Cart> findByMemberid(Long memberid);
-    Optional<Cart> findByProductid(Long productid);
-    Optional<Cart> findByCartqty(int cartqty);
+    Optional<Cart> findById(Long memberid);
     List<Cart> findAll();
 
 }

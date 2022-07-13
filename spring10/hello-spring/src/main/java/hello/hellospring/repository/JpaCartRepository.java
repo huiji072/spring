@@ -22,22 +22,11 @@ public class JpaCartRepository implements CartRepository{
     }
 
     @Override
-    public Optional<Cart> findByMemberid(Long memberid) {
+    public Optional<Cart> findById(Long memberid) {
         Cart cart = em.find(Cart.class, memberid);
         return Optional.ofNullable(cart);
     }
 
-    @Override
-    public Optional<Cart> findByProductid(Long productid) {
-        Cart cart = em.find(Cart.class, productid);
-        return Optional.ofNullable(cart);
-    }
-
-    @Override
-    public Optional<Cart> findByCartqty(int cartqty) {
-        Cart cart = em.find(Cart.class, cartqty);
-        return Optional.ofNullable(cart);
-    }
 
     @Override
     public List<Cart> findAll() {

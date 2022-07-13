@@ -15,9 +15,9 @@ public class CartService {
         this.cartRepository = cartRepository;
     }
 
-    public Long save(Cart cart) {
+    public Long join(Cart cart) {
         cartRepository.save(cart);
-        return cart.getProductid();
+        return cart.getId();
     }
 
     public List<Cart> findCarts() {

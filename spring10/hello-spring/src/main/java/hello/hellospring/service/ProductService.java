@@ -1,26 +1,32 @@
 package hello.hellospring.service;
 
-import hello.hellospring.domain.Member;
 import hello.hellospring.domain.Product;
+import hello.hellospring.repository.ProductOrderRepository;
 import hello.hellospring.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductOrderRepository productOrderRepository;
 
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, ProductOrderRepository productOrderRepository) {
         this.productRepository = productRepository;
+        this.productOrderRepository = productOrderRepository;
     }
 
     public Long upload(Product product) {
         validateDuplicateProduct(product);
         productRepository.save(product);
         return product.getId();
+    }
+
+    public Optional<Product> findByname(String name){
+        return productRepository.findByName(name);
     }
 
     private void validateDuplicateProduct(Product product) {
@@ -32,20 +38,20 @@ public class ProductService {
 
     }
 
-//    public List<Product> sortByName() {
-//        List<Product> sortName = productRepository.findAll(Sort.by("name"));
-//        return sortName;
-//    }
+    public List<Product> orderByName() {
+        return productOrderRepository.findAll();
+    }
     
     public List<Product> findProducts() {
         return productRepository.findAll();
     }
 
 
+
+
     public boolean search(Product product) {
 
-        if(productRepository.findByQty(product.getQty()).isPresent() &&
-        productRepository.findByName(product.getName()).isPresent()){
+        if(productRepository.findByName(product.getName()).isPresent()){
             return true;
         }
         return false;

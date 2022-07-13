@@ -66,12 +66,7 @@ public class JpaProductRepository implements ProductRepository{
                 .getResultList();
     }
 
-//    @Override
-//    public List<Product> findAll(Product product){
-//        return em.createQuery("select p from Product p order by name = :name", Product.class)
-//                .setParameter("name", product.getName())
-//                .getResultList();
-//    }
+
 
     
 }
