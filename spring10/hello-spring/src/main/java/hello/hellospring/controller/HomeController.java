@@ -27,8 +27,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember, Model model
-    , Seller seller, Buyer buyer) {
+    public String home(@SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
 
         //세션에 회원 데이터가 없으면 home으로
         if(loginMember == null) {

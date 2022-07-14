@@ -37,17 +37,10 @@ public class ProductService {
                 });
 
     }
-
-    public List<Product> orderByName() {
-        return productOrderRepository.findAll();
-    }
     
     public List<Product> findProducts() {
         return productRepository.findAll();
     }
-
-
-
 
     public boolean search(Product product) {
 

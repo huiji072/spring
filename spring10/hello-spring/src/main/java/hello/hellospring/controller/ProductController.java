@@ -35,8 +35,7 @@ public class ProductController {
     }
 
     @PostMapping("/products/upload")
-    public String upload(ProductForm form, @RequestParam(value="chkseller", required = false) String sellerid
-    ,Model model, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember) {
+    public String upload(ProductForm form, @SessionAttribute(name = SessionConstants.LOGIN_MEMBER, required = false) Member loginMember) {
 
         Product product = new Product();
         product.setUserid(loginMember.getId());
@@ -82,8 +81,7 @@ public class ProductController {
     }
 
     @PostMapping("/products/cart")
-    public String cart(@RequestParam(value="chk", required = false) List<String > pname, Model model,
-                       @RequestParam(value="qty", required = false) List<String > pqty){
+    public String cart(@RequestParam(value="chk", required = false) List<String > pname, Model model){
 
         int cnt = 0;
 
@@ -99,6 +97,12 @@ public class ProductController {
         model.addAttribute("carts", carts);
 
         return "products/cart";
+    }
+
+
+    @PostMapping("/products/buy")
+    public String buyForm() {
+        return "products/buy";
     }
 
 

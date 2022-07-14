@@ -31,18 +31,23 @@ tr:nth-child(even) {
                 <th>id</th>
                 <th>product</th>
                 <th>qty</th>
+                <th>image</th>
             </tr>
 
             </thead>
 
 
             <tbody>
-            <form action="/products/cart" method="post">
+            <form action="/products/buy" method="post">
 
                 <tr th:each="cart : ${carts}">
                     <td th:text="${cart.id}"></td>
                     <td th:text="${cart.name}"></td>
                     <td th:text="${cart.qty}"></td>
+                    <td><image th:src="${cart.image}"></image></td>
+                </tr>
+                <tr>
+                    <button type="submit" id="btnBuy">BUY</button>
                 </tr>
 
             </form>
