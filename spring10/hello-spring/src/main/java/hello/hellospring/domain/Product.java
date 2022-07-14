@@ -20,6 +20,15 @@ public class Product {
     Instant createdate = Instant.now();
     @Column(name = "updatedate")
     Instant updatedate = Instant.now();
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public Long getUserid() {
         return userid;

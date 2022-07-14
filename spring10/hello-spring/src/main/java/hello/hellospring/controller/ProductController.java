@@ -42,6 +42,7 @@ public class ProductController {
         product.setUserid(loginMember.getId());
         product.setName(form.getName());
         product.setQty(form.getQty());
+        product.setImage(form.getImage());
         productService.upload(product);
         return "redirect:/";
     }
@@ -84,11 +85,14 @@ public class ProductController {
     public String cart(@RequestParam(value="chk", required = false) List<String > pname, Model model,
                        @RequestParam(value="qty", required = false) List<String > pqty){
 
+        int cnt = 0;
+
         for(String name : pname) {
             Cart cart = new Cart();
             cart.setName(name.toString());
-            cart.setQty(1);
+
             cartService.join(cart); //cart에 insert
+
         }
 
         List<Cart> carts = cartService.findCarts();

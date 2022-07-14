@@ -22,7 +22,7 @@ tr:nth-child(even) {
 <body>
 
 <div class="container">
-
+<!--이미지 주소 예시 https://blogpfthumb-phinf.pstatic.net/MjAyMjA3MTFfNzkg/MDAxNjU3NDk0ODI2NDk1.KLjYRj_z-0JrZ0pI8ID5atuXFVNbObtR1zcEgPqJnwYg.8QFEzB41kUhco42es6VQRWCSYYDeQFBdB6IopPTXwe0g.JPEG.g0heaven/profileImage.jpg?type=s40-->
     <div>
         <p><button onclick="sortTable()">name-sort</button></p>
         <table id="productList">
@@ -35,6 +35,7 @@ tr:nth-child(even) {
                 <th>qty</th>
                 <th>create-date</th>
                 <th>update-date</th>
+                <th>image</th>
             </tr>
 
             </thead>
@@ -51,9 +52,11 @@ tr:nth-child(even) {
                     <td th:text="${product.qty}"></td>
                     <td th:text="${product.createdate}"></td>
                     <td th:text="${product.updatedate}"></td>
+<!--                    <td><img th:src="${product.image}"></td>-->
+                    <td><image th:src="${product.image}"></image></td>
                     <td></td>
                     <td><input type="checkbox" id="chk" name="chk" th:value="${product.name}"></td>
-<!--                    <td><input type="hidden" id="qty" name="qty" th:value="${product.qty}"></td>-->
+                    <td><input type="hidden" id="qty" name="qty" th:value="${product.qty}"></td>
                     <td><input type="hidden" id="id" name="id" th:value="${product.id}"></td>
 <!--                    <td><input type="hidden" id="userid" name="userid" th:value="${product.userid}"></td>-->
 <!--                    <td><input type="hidden" id="name" name="name" th:value="${product.name}"></td>-->
