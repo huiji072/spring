@@ -50,7 +50,7 @@ tr:nth-child(even) {
             </thead>
 
             <tbody>
-            <tr th:each="product : ${products}">
+            <tr th:each="product : ${findNameLike}">
                 <td th:text="${product.userid}"></td>
                 <td th:text="${product.id}"></td>
                 <td th:text="${product.name}"></td>

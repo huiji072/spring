@@ -58,7 +58,6 @@ public class ProductController {
     public String list(Model model, Product product, String name ) {
 
         List<Product> orderByName = productService.findByNameLessThanOrderByName();
-        System.out.println("~~~~"+orderByName.toString());
         model.addAttribute("orderByName", orderByName);
         return "products/list";
 
@@ -72,11 +71,15 @@ public class ProductController {
 
     @PostMapping("/products/search")
     public String search(Model model, Product products) {
-        if(productService.search(products)) {
-            model.addAttribute("products", products);
-            return "products/search";
-        }
-        return "redirect:/";
+//        if(productService.search(products)) {
+//            model.addAttribute("products", products);
+//            return "products/search";
+//        }
+
+        List<Product> findLikeName = productService.findByNameLike(products.getName());
+        model.addAttribute("findNameLike", findLikeName);
+
+        return "products/search";
     }
 
     @GetMapping("/products/cart")

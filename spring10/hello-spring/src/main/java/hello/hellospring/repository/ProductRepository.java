@@ -15,7 +15,7 @@ public interface ProductRepository {
     Optional<Product> findByQty(int qty);
     Optional<Product> findByCreatedate(Instant createdate);
     Optional<Product> findByupdatedate(Instant updatedate);
-    Optional<Product> findByNameLike(String name);
     List<Product> findAll();
     List<Product> findByNameLessThanOrderByName(String name);
+    List<Product> findByNameLike(String name);
 }

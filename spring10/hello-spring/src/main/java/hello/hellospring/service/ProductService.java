@@ -45,6 +45,11 @@ public class ProductService {
         return productRepository.findByNameLessThanOrderByName("{");
     }
 
+    public List<Product> findByNameLike(String name) {
+        List<Product> findNameLike = productRepository.findByNameLike(name);
+        return productRepository.findByNameLike(name);
+    }
+
 
 
     public boolean search(Product product) {

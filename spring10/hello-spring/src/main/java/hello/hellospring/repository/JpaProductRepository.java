@@ -66,7 +66,7 @@ public class JpaProductRepository implements ProductRepository{
         return em.createQuery("select p from Product p", Product.class)
                 .getResultList();
     }
-    
+
     @Override
     public List<Product> findByNameLessThanOrderByName(String name) {
         return em.createQuery("select p from Product p order by p.name", Product.class)
@@ -74,14 +74,12 @@ public class JpaProductRepository implements ProductRepository{
                 .getResultList();
     }
 
-
-    //like 절
     @Override
-    public Optional<Product> findByNameLike(String name) {
-        return Optional.empty();
+    public List<Product> findByNameLike(String name) {
+        return em.createQuery("select p from Product p like p.name", Product.class)
+                .setParameter("name", name)
+                .getResultList();
     }
-
-
 
 
 }
