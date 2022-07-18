@@ -1,7 +1,6 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Product;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.Instant;
 import java.util.List;
@@ -16,5 +15,7 @@ public interface ProductRepository {
     Optional<Product> findByQty(int qty);
     Optional<Product> findByCreatedate(Instant createdate);
     Optional<Product> findByupdatedate(Instant updatedate);
+    Optional<Product> findByNameLike(String name);
     List<Product> findAll();
+    List<Product> findByNameLessThanOrderByName(String name);
 }

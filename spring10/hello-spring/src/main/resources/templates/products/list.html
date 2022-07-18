@@ -24,7 +24,7 @@ tr:nth-child(even) {
 <div class="container">
 <!--이미지 주소 예시 https://blogpfthumb-phinf.pstatic.net/MjAyMjA3MTFfNzkg/MDAxNjU3NDk0ODI2NDk1.KLjYRj_z-0JrZ0pI8ID5atuXFVNbObtR1zcEgPqJnwYg.8QFEzB41kUhco42es6VQRWCSYYDeQFBdB6IopPTXwe0g.JPEG.g0heaven/profileImage.jpg?type=s40-->
     <div>
-        <p><button onclick="sortTable()">name-sort</button></p>
+<!--        <p><button onclick="sortTable()">Order by Name</button></p>-->
         <table id="productList">
             <thead>
 
@@ -52,59 +52,74 @@ tr:nth-child(even) {
                     <td th:text="${product.qty}"></td>
                     <td th:text="${product.createdate}"></td>
                     <td th:text="${product.updatedate}"></td>
-<!--                    <td><img th:src="${product.image}"></td>-->
+                    <!--                    <td><img th:src="${product.image}"></td>-->
                     <td><image th:src="${product.image}"></image></td>
                     <td></td>
                     <td><input type="checkbox" id="chk" name="chk" th:value="${product.name}"></td>
                     <td><input type="hidden" id="qty" name="qty" th:value="${product.qty}"></td>
                     <td><input type="hidden" id="id" name="id" th:value="${product.id}"></td>
-<!--                    <td><input type="hidden" id="userid" name="userid" th:value="${product.userid}"></td>-->
-<!--                    <td><input type="hidden" id="name" name="name" th:value="${product.name}"></td>-->
-<!--                    <td><input type="hidden" id="qty" name="qty" th:value="${product.qty}"></td>-->
                 </tr>
                 <p>
+<!--                <input type="hidden" id="pname" name="pname" th:value="${product.name}">-->
                     <button type="submit" id="btnCart">cart</button>
                 </p>
             </form>
+
+
+                <form method="post" id="orderby-form" action="/products/list">
+
+                    <tr th:each="orderbyname : ${orderByName}">
+                        <td th:text="${orderbyname.id}"></td>
+                        <td th:text="${orderbyname.userid}"></td>
+                        <td th:text="${orderbyname.name}"></td>
+                        <td th:text="${orderbyname.qty}"></td>
+                        <td th:text="${orderbyname.createdate}"></td>
+                        <td th:text="${orderbyname.updatedate}"></td>
+                        <td><image th:src="${orderbyname.image}"></image></td>
+                        <td></td>
+                    </tr>
+                    <button type="submit" id="btnOrderByName" name="btnOrderByName">name</button>
+            </form>
+
             </tbody>
         </table>
     </div>
 
 </div>
 
-<script>
-function sortTable() {
+<!--<script>-->
+<!--function sortTable() {-->
 
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("productList");
-  switching = true;
+<!--  var table, rows, switching, i, x, y, shouldSwitch;-->
+<!--  table = document.getElementById("productList");-->
+<!--  switching = true;-->
 
-  while (switching) {
-    switching = false;
-    rows = table.rows;
+<!--  while (switching) {-->
+<!--    switching = false;-->
+<!--    rows = table.rows;-->
 
-    for (i = 1; i < (rows.length - 1); i++) {
+<!--    for (i = 1; i < (rows.length - 1); i++) {-->
 
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[2];
-      y = rows[i + 1].getElementsByTagName("TD")[2];
+<!--      shouldSwitch = false;-->
+<!--      x = rows[i].getElementsByTagName("TD")[2];-->
+<!--      y = rows[i + 1].getElementsByTagName("TD")[2];-->
 
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+<!--      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {-->
 
-        shouldSwitch = true;
-        break;
-      }
-    }
+<!--        shouldSwitch = true;-->
+<!--        break;-->
+<!--      }-->
+<!--    }-->
 
-    if (shouldSwitch) {
+<!--    if (shouldSwitch) {-->
 
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
+<!--      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);-->
+<!--      switching = true;-->
 
-    }
-  }
-}
-</script>
+<!--    }-->
+<!--  }-->
+<!--}-->
+<!--</script>-->
 
 </body>
 </html>

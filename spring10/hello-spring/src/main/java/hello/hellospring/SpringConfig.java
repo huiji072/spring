@@ -13,15 +13,14 @@ public class SpringConfig {
     private final CartRepository cartRepository;
     private final SellerRepository sellerRepository;
     private final BuyerRepository buyerRepository;
-    private final ProductOrderRepository productOrderRepository;
 
-    public SpringConfig(MemberRepository memberRepository, ProductRepository productRepository, CartRepository cartRepository, SellerRepository sellerRepository, BuyerRepository buyerRepository, ProductOrderRepository productOrderRepository) {
+    public SpringConfig(MemberRepository memberRepository, ProductRepository productRepository, CartRepository cartRepository,
+                        SellerRepository sellerRepository, BuyerRepository buyerRepository) {
         this.memberRepository = memberRepository;
         this.productRepository = productRepository;
         this.cartRepository = cartRepository;
         this.sellerRepository = sellerRepository;
         this.buyerRepository = buyerRepository;
-        this.productOrderRepository = productOrderRepository;
     }
 
     @Bean
@@ -30,7 +29,7 @@ public class SpringConfig {
     }
     @Bean
     public ProductService productService() {
-        return new ProductService(productRepository, productOrderRepository);
+        return new ProductService(productRepository);
     }
     @Bean
     public CartService cartService() {

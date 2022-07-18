@@ -1,25 +1,30 @@
 package hello.hellospring.domain;
 
-import org.springframework.core.annotation.Order;
-
 import javax.persistence.*;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
+@Table(name="PRODUCT")
 public class Product {
+    public Product() {
+        this.name = name;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
+    @Column(name="userid")
     private Long userid;
+    @Column(name="NAME")
     private String name;
+    @Column(name="qty")
     private int qty;
     @Column(name = "createdate")
     Instant createdate = Instant.now();
     @Column(name = "updatedate")
     Instant updatedate = Instant.now();
+    @Column(name="image")
     private String image;
 
     public String getImage() {
@@ -66,8 +71,9 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
+    public String setName(String name) {
         this.name = name;
+        return name;
     }
 
     public int getQty() {

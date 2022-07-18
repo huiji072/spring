@@ -37,8 +37,11 @@ public class JpaProductRepository implements ProductRepository{
     public Optional<Product> findByName(String name) {
         Product product = em.find(Product.class, name);
         return Optional.ofNullable(product);
+//        List<Product> result = em.createQuery("select p.name from Product p where p.name = :name", Product.class)
+//                .setParameter("name", name)
+//                .getResultList();
+//        return result.stream().findAny();
     }
-
 
     @Override
     public Optional<Product> findByQty(int qty) {
@@ -58,15 +61,27 @@ public class JpaProductRepository implements ProductRepository{
         return Optional.ofNullable(product);
     }
 
-
-
     @Override
     public List<Product> findAll() {
         return em.createQuery("select p from Product p", Product.class)
                 .getResultList();
     }
-
-
-
     
+    @Override
+    public List<Product> findByNameLessThanOrderByName(String name) {
+        return em.createQuery("select p from Product p order by p.name", Product.class)
+                .setParameter("name", name)
+                .getResultList();
+    }
+
+
+    //like 절
+    @Override
+    public Optional<Product> findByNameLike(String name) {
+        return Optional.empty();
+    }
+
+
+
+
 }

@@ -1,7 +1,6 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Product;
-import hello.hellospring.repository.ProductOrderRepository;
 import hello.hellospring.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,12 +10,10 @@ import java.util.Optional;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final ProductOrderRepository productOrderRepository;
 
     @Autowired
-    public ProductService(ProductRepository productRepository, ProductOrderRepository productOrderRepository) {
+    public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.productOrderRepository = productOrderRepository;
     }
 
     public Long upload(Product product) {
@@ -25,7 +22,7 @@ public class ProductService {
         return product.getId();
     }
 
-    public Optional<Product> findByname(String name){
+    public Optional<Product> findByName(String name){
         return productRepository.findByName(name);
     }
 
@@ -42,6 +39,14 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+
+    public List<Product> findByNameLessThanOrderByName() {
+        List<Product> productOrder = productRepository.findByNameLessThanOrderByName("{");
+        return productRepository.findByNameLessThanOrderByName("{");
+    }
+
+
+
     public boolean search(Product product) {
 
         if(productRepository.findByName(product.getName()).isPresent()){
@@ -50,5 +55,7 @@ public class ProductService {
         return false;
 
     }
+
+
 
 }

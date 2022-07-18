@@ -5,7 +5,6 @@ import hello.hellospring.domain.Cart;
 import hello.hellospring.domain.Member;
 import hello.hellospring.domain.Product;
 import hello.hellospring.domain.ProductForm;
-import hello.hellospring.repository.ProductOrderRepository;
 import hello.hellospring.service.CartService;
 import hello.hellospring.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +12,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class ProductController {
-
+    private List<String> productname;
     private final ProductService productService;
     private final CartService cartService;
     @Autowired
-    public ProductController(ProductService productService, CartService cartService) {
+    public ProductController(List<String> productname, ProductService productService, CartService cartService) {
+        this.productname = productname;
         this.productService = productService;
         this.cartService = cartService;
     }
@@ -50,14 +50,20 @@ public class ProductController {
     public String list(Model model) {
         List<Product> products = productService.findProducts();
         model.addAttribute("products", products);
+
         return "products/list";
     }
 
-//    @PostMapping("/products/list")
-//    public String listToCart(Product product) {
-//
-//        return "products/cart";
-//    }
+    @PostMapping("/products/list")
+    public String list(Model model, Product product, String name ) {
+
+        List<Product> orderByName = productService.findByNameLessThanOrderByName();
+        System.out.println("~~~~"+orderByName.toString());
+        model.addAttribute("orderByName", orderByName);
+        return "products/list";
+
+    }
+
 
     @GetMapping("/products/search")
     public String searchForm() {
@@ -84,6 +90,7 @@ public class ProductController {
     public String cart(@RequestParam(value="chk", required = false) List<String > pname, Model model){
 
         int cnt = 0;
+
 
         for(String name : pname) {
             Cart cart = new Cart();
