@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<head>
+    <style>
+table {
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<!--이미지 주소 예시 https://blogpfthumb-phinf.pstatic.net/MjAyMjA3MTFfNzkg/MDAxNjU3NDk0ODI2NDk1.KLjYRj_z-0JrZ0pI8ID5atuXFVNbObtR1zcEgPqJnwYg.8QFEzB41kUhco42es6VQRWCSYYDeQFBdB6IopPTXwe0g.JPEG.g0heaven/profileImage.jpg?type=s40-->
+    <div>
+<!--        <p><button onclick="sortTable()">Order by Name</button></p>-->
+        <table id="productList">
+            <thead>
+
+            <tr>
+                <th>product id</th>
+                <th>user id</th>
+                <th>product</th>
+                <th>qty</th>
+                <th>create-date</th>
+                <th>update-date</th>
+                <th>image</th>
+            </tr>
+
+            </thead>
+
+
+            <tbody>
+
+            <form method="post" id="wish-form" action="/products/cart">
+
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.id}"></td>
+                    <td th:text="${product.userid}"></td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.qty}"></td>
+                    <td th:text="${product.createdate}"></td>
+                    <td th:text="${product.updatedate}"></td>
+                    <!--                    <td><img th:src="${product.image}"></td>-->
+                    <td><image th:src="${product.image}"></image></td>
+                    <td></td>
+                    <td><input type="checkbox" id="chk" name="chk" th:value="${product.name}"></td>
+                    <td><input type="hidden" id="qty" name="qty" th:value="${product.qty}"></td>
+                    <td><input type="hidden" id="id" name="id" th:value="${product.id}"></td>
+                </tr>
+                <p>
+<!--                <input type="hidden" id="pname" name="pname" th:value="${product.name}">-->
+                    <button type="submit" id="btnCart">cart</button>
+                </p>
+            </form>
+
+
+                <form method="post" id="orderby-form" action="/products/list">
+
+                    <tr th:each="orderbyname : ${orderByName}">
+                        <td th:text="${orderbyname.id}"></td>
+                        <td th:text="${orderbyname.userid}"></td>
+                        <td th:text="${orderbyname.name}"></td>
+                        <td th:text="${orderbyname.qty}"></td>
+                        <td th:text="${orderbyname.createdate}"></td>
+                        <td th:text="${orderbyname.updatedate}"></td>
+                        <td><image th:src="${orderbyname.image}"></image></td>
+                        <td></td>
+                    </tr>
+                    <button type="submit" id="btnOrderByName" name="btnOrderByName">name</button>
+            </form>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!--<script>-->
+<!--function sortTable() {-->
+
+<!--  var table, rows, switching, i, x, y, shouldSwitch;-->
+<!--  table = document.getElementById("productList");-->
+<!--  switching = true;-->
+
+<!--  while (switching) {-->
+<!--    switching = false;-->
+<!--    rows = table.rows;-->
+
+<!--    for (i = 1; i < (rows.length - 1); i++) {-->
+
+<!--      shouldSwitch = false;-->
+<!--      x = rows[i].getElementsByTagName("TD")[2];-->
+<!--      y = rows[i + 1].getElementsByTagName("TD")[2];-->
+
+<!--      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {-->
+
+<!--        shouldSwitch = true;-->
+<!--        break;-->
+<!--      }-->
+<!--    }-->
+
+<!--    if (shouldSwitch) {-->
+
+<!--      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);-->
+<!--      switching = true;-->
+
+<!--    }-->
+<!--  }-->
+<!--}-->
+<!--</script>-->
+
+</body>
+</html>

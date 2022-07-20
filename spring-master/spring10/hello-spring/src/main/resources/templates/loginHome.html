@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Donators Market</title>
+</head>
+<body>
+
+<div class="container">
+
+    <h4 class="mb-3" th:text="|로그인 사용자 이름: ${member.email}|">로그인 사용자 이름</h4>
+
+    <p>
+        <a href="/members/logout">logout</a>
+        <a href="/members/list">list</a>
+    </p>
+
+    <p>
+        <a href="/products/upload">upload</a>
+        <a href="/products/list">list</a>
+        <a href="/products/search">search</a>
+        <a href="/products/cart">cart</a>
+    </p>
+
+</div>
+
+</body>
+</html>

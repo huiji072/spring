@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>UPLOAD</title>
+</head>
+<body>
+
+<div class="container">
+
+
+    <h3>upload</h3>
+
+    <form action="/products/upload" method="post">
+        <p>
+            <label for="name" class="upload-form">name</label>
+            <input type="text" id="name" name="name">
+        </p>
+        <p>
+            <label for="qty" class="upload-form">qty</label>
+            <input type="text" id="qty" name="qty">
+        </p>
+        <p>
+            <label for="image" class="upload-form">image</label>
+            <input type="text" id="image" name="image">
+        </p>
+        <p>
+            <button type="submit" id="btnUpload">upload</button>
+        </p>
+
+    </form>
+
+</div>
+
+</body>
+</html>

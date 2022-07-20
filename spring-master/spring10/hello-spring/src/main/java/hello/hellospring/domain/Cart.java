@@ -4,7 +4,8 @@ import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
-public class Cart{
+public class Cart {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,9 +44,5 @@ public class Cart{
 
     public void setQty(int qty) {
         this.qty = qty;
-    }
-
-    public void addCount(int qty){
-        this.qty += qty;
     }
 }

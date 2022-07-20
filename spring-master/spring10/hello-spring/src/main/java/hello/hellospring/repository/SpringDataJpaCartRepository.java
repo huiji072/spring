@@ -6,10 +6,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.Optional;
-
 public interface SpringDataJpaCartRepository extends JpaRepository<Cart, Long>, CartRepository {
-
-    Optional<Cart> findByName(String name);
+//    @Modifying
+//    @Query("update Cart c set c.qty=:qty where c.name=:name")
+//    int updateCart(@Param(value="name") String name, @Param(value = "qty") int qty);
 
 }

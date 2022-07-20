@@ -1,6 +1,5 @@
 package hello.hellospring.domain;
 
-import hello.hellospring.constatnt.Role;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
@@ -18,22 +17,12 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name="email")
     private String email;
     private String password;
 
     @OneToOne(mappedBy="member")
     private Seller seller;
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 
     public Seller getSeller() {
         return seller;
@@ -69,14 +58,4 @@ public class Member {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
-    public static Member createMember(MemberForm form) {
-        Member member = new Member();
-        member.setEmail(form.getEmail());
-        member.setPassword(form.getPassword());
-        member.setRole(Role.USER);
-        return member;
-    }
-
 }

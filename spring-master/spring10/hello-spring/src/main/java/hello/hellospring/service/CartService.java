@@ -1,27 +1,22 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Cart;
-import hello.hellospring.domain.Product;
-import hello.hellospring.dto.CartItemDto;
 import hello.hellospring.repository.CartRepository;
-import hello.hellospring.repository.ProductRepository;
+import hello.hellospring.repository.SpringDataJpaCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
 public class CartService {
 
     private final CartRepository cartRepository;
-    private final ProductRepository productRepository;
 
     @Autowired
-    public CartService(CartRepository cartRepository, ProductRepository productRepository) {
+    public CartService(CartRepository cartRepository) {
         this.cartRepository = cartRepository;
-        this.productRepository = productRepository;
     }
 
     public Long join(Cart cart) {

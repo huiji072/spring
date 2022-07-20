@@ -33,7 +33,7 @@ public class SpringConfig {
     }
     @Bean
     public CartService cartService() {
-        return new CartService(cartRepository, productRepository);
+        return new CartService(cartRepository);
     }
     @Bean
     public SellerService sellerService() {

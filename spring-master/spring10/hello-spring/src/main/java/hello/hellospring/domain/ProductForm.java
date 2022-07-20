@@ -1,14 +1,7 @@
 package hello.hellospring.domain;
 
-import javax.persistence.*;
-import java.time.Instant;
+public class ProductForm {
 
-@Entity
-public class Cart{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String name;
     private int qty;
     private String image;
@@ -19,14 +12,6 @@ public class Cart{
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -43,9 +28,5 @@ public class Cart{
 
     public void setQty(int qty) {
         this.qty = qty;
-    }
-
-    public void addCount(int qty){
-        this.qty += qty;
     }
 }
