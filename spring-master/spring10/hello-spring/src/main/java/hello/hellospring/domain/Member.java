@@ -58,4 +58,25 @@ public class Member {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public static Member createMemebr(MemberForm form) {
+        Member member = new Member();
+        member.setEmail(form.getEmail());
+        member.setPassword(form.getPassword());
+        member.setRole(Role.SELLER);
+        return member;
+    }
+
+
 }

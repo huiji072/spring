@@ -79,7 +79,7 @@ public class MemberController {
 
     //    @ResponseBody
     @PostMapping("/members/login")
-    public String login(@ModelAttribute  MemberForm form, HttpServletRequest request, Model model) {
+    public String login(@ModelAttribute  MemberForm form, HttpServletRequest request) {
 
         Member loginMember = memberService.login(form.getEmail(), form.getPassword());
         //email, password가 맞지 않을 때
