@@ -74,7 +74,7 @@ public class Member {
         Member member = new Member();
         member.setEmail(form.getEmail());
         member.setPassword(form.getPassword());
-        member.setRole(Role.SELLER);
+        member.setRole(Role.USER);
         return member;
     }
 

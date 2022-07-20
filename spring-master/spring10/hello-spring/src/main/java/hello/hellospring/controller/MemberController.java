@@ -1,10 +1,7 @@
 package hello.hellospring.controller;
 
 import hello.hellospring.SessionConstants;
-import hello.hellospring.domain.Buyer;
-import hello.hellospring.domain.Member;
-import hello.hellospring.domain.MemberForm;
-import hello.hellospring.domain.Seller;
+import hello.hellospring.domain.*;
 import hello.hellospring.service.BuyerService;
 import hello.hellospring.service.MemberService;
 import hello.hellospring.service.SellerService;
@@ -51,16 +48,19 @@ public class MemberController {
         model.addAttribute("member", member);
 //seller, buyer 체크박스 선택 시
         if(Objects.equals(sellerid, "on") && !Objects.equals(buyerid, "on")) {
+//            member.setRole(Role.SELLER);
             Seller seller = new Seller();
             seller.setMemberid(member.getId());
             sellerService.save(seller);
             return "sellerHome";
         }else if(!Objects.equals(sellerid, "on") && Objects.equals(buyerid, "on")) {
+//            member.setRole(Role.BUYER);
             Buyer buyer = new Buyer();
             buyer.setMemberid(member.getId());
             buyerService.save(buyer);
             return "buyerHome";
         }else if(Objects.equals(sellerid, "on") && Objects.equals(buyerid, "on")) {
+//            member.setRole(Role.BOTH);
             Seller seller = new Seller();
             seller.setMemberid(member.getId());
             sellerService.save(seller);
@@ -86,6 +86,7 @@ public class MemberController {
         if(loginMember == null) {
             return "members/login";
         }
+        System.out.println("!!!"+loginMember.getRole());
 
         //로그인 성공
         //세션이 있으면 있는 세션 반환, 없으면 신규 세션 생성
